@@ -1,7 +1,7 @@
+
 def most(arr):
 	num = {}
-	count = 0
-	j=0
+	
 	for i in arr:
 			if i in num:
 				num[i] += 1
@@ -16,8 +16,5 @@ def most(arr):
 			numax = k
 	return numax
 
-arr = [1, 3, 2, 2,2, 4, 3, 5, 2, 1, 3]
-print("Most frequent element:", most(arr))
-
-
-
+ap = [1, 3, 2, 2,2, 4, 3, 5, 2, 1, 3]
+print("Most frequent element:", most(ap))

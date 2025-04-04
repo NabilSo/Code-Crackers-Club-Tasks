@@ -1,0 +1,63 @@
+import random
+from collections import Counter
+
+opponent_moves = []
+
+   
+moves = ["rock", "paper", "scissors"]
+counter = {"rock": "paper", "paper": "scissors", "scissors": "rock"}
+
+def counter_most_frequent(opponent_moves):
+    if not opponent_moves:
+        return moves[1]
+
+    most_common = max(set(opponent_moves), key=opponent_moves.count)
+    return vounter[most_common]
+
+def predict_next_move(opponent_moves, pattern_length=3):
+    if len(opponent_moves) < pattern_length:
+        return counter_most_frequent(opponent_moves)
+
+    recent_pattern = tuple(opponent_moves[-pattern_length:])
+    pattern_counts = Counter()
+
+    # Count occurrences of patterns in history
+    for i in range(len(opponent_moves) - pattern_length):
+        pattern = tuple(opponent_moves[i:i + pattern_length])
+        next_move_index = i + pattern_length
+
+        if next_move_index < len(opponent_moves):
+            next_move = opponent_moves[next_move_index]
+            pattern_counts[(pattern, next_move)] += 1
+
+    # Find the most common next move following the recent pattern
+    next_moves = {}
+
+    for key, value in pattern_counts.items():
+        pattern = key[0]
+        next_move = key[1]
+
+        if pattern == recent_pattern:
+            next_moves[next_move] = value
+
+    if next_moves:
+        predicted_next = max(next_moves, key=next_moves.get)
+        return counter[predicted_next]
+
+    return random.choice(moves)
+
+def main(opponent_moves, round_num):
+    if round_num < 10:
+        return random.choice(moves) 
+
+    move_frequencies = Counter(opponent_moves)
+    most_common_count = max(move_frequencies.values(), default=0)
+
+    if len(opponent_moves) > 0:
+        score = most_common_count / len(opponent_moves)
+    else:
+        score = 0
+
+    if score > 0.5:
+        return counter_most_frequent(opponent_moves) 
+    return predict_next_move(opponent_moves)
