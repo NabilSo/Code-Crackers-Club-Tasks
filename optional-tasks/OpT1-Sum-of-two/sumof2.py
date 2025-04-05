@@ -8,5 +8,4 @@ def sumoftwo(nums, target):
     return result
 
 test = [5,6,9,8,7,1,3,5,6,4]
-
 print(sumoftwo(test, 8))
