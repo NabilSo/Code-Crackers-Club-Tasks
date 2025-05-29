@@ -1,0 +1,17 @@
+#tst
+
+def maxsubarray(arr):
+    somme=0
+    temp=0
+    i=0
+    j=0
+    for n in arr:
+        i+=1
+        if(n<0):
+           temp = arr.index(n)
+        elif
+
+    return somme
+arr=(3,-9,8,-7,-8,4,5,-3,-4,-4,-2)
+
+print(maxsubarray(arr))
